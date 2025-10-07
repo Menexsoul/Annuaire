@@ -31,6 +31,9 @@ class Player
     #[ORM\ManyToOne(inversedBy: 'DesJoueurs')]
     private ?Niveau $UnNiveau = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $photo = null;
+
     /**
      * @var Collection<int, Review>
      */
@@ -103,6 +106,18 @@ class Player
     public function setUnNiveau(?Niveau $UnNiveau): static
     {
         $this->UnNiveau = $UnNiveau;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): static
+    {
+        $this->photo = $photo;
 
         return $this;
     }

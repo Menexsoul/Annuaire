@@ -10,9 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[IsGranted('ROLE_ADMIN')]
 #[Route('/player')]
 final class PlayerController extends AbstractController
 {
@@ -47,8 +45,23 @@ final class PlayerController extends AbstractController
     #[Route('/{id}', name: 'app_player_show', methods: ['GET'])]
     public function show(Player $player): Response
     {
+        // collect reviews for this player
+        $reviews = $player->getDesAvis()->toArray();
+
+        // compute average rating if there are reviews
+        $average = null;
+        if (count($reviews) > 0) {
+            $sum = 0;
+            foreach ($reviews as $r) {
+                $sum += (float) $r->getRating();
+            }
+            $average = round($sum / count($reviews), 2);
+        }
+
         return $this->render('player/show.html.twig', [
             'player' => $player,
+            'reviews' => $reviews,
+            'average' => $average,
         ]);
     }
 
