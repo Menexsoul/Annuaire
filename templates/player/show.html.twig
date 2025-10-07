@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>{{ player.Prenom }} {{ player.Nom }}</h1>
-    <img src="{{ asset('uploads/players/' ~ player.photo) }}" alt="{{ player.Prenom }}" width="200">
+        <img src="{{ asset('assets/uploads/players/' ~ (player.photo ?: 'default.png')) }}" alt="{{ player.Prenom }}" width="200">
     <p>Catégorie : {{ player.MaCategorie.Nom }}</p>
     <p>Niveau : {{ player.UnNiveau.nom }}</p>
 
@@ -27,16 +27,16 @@
     <hr>
 
 {% if app.user %}
-    {% if form is defined %}
-        <h3>Laisser un avis</h3>
-        {{ form_start(form) }}
-        {{ form_row(form.rating) }}
-        {{ form_row(form.comment) }}
-        <button class="btn btn-primary">Envoyer</button>
-        {{ form_end(form) }}
-    {% else %}
-        <p>Vous avez déjà donné un avis pour ce joueur.</p>
-    {% endif %}
+        {% if form is defined and form is not null %}
+            <h3>Laisser un avis</h3>
+            {{ form_start(form, {'action': path('app_player_review', {'id': player.id})}) }}
+            {{ form_row(form.rating) }}
+            {{ form_row(form.comment) }}
+            <button class="btn btn-primary">Envoyer</button>
+            {{ form_end(form) }}
+        {% else %}
+            <p>Vous avez déjà donné un avis pour ce joueur.</p>
+        {% endif %}
     {% else %}
     <p><a href="{{ path('app_login') }}">Connectez-vous</a> pour laisser un avis.</p>
     {% endif %}

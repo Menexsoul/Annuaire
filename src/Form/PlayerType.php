@@ -20,11 +20,21 @@ class PlayerType extends AbstractType
             ->add('BirthDate')
             ->add('MaCategorie', EntityType::class, [
                 'class' => Category::class,
-                'choice_label' => 'id',
+                'choice_label' => function (?Category $cat) {
+                    return $cat ? $cat->getNom() : '';
+                },
+                'choice_value' => function (?Category $cat) {
+                    return $cat ? $cat->getNom() : '';
+                },
             ])
             ->add('UnNiveau', EntityType::class, [
                 'class' => Niveau::class,
-                'choice_label' => 'id',
+                'choice_label' => function (?Niveau $niv) {
+                    return $niv ? $niv->getNom() : '';
+                },
+                'choice_value' => function (?Niveau $niv) {
+                    return $niv ? $niv->getNom() : '';
+                },
             ])
         ;
     }

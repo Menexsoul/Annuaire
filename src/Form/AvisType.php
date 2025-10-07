@@ -2,19 +2,19 @@
 
 namespace App\Form;
 
-use App\Entity\Player;
 use App\Entity\Review;
-use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Validator\Constraints\Range;
 
 class AvisType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-         $builder
+        $builder
             ->add('rating', IntegerType::class, [
                 'label' => 'Note sur 5',
                 'constraints' => [new Range(['min' => 1, 'max' => 5])],

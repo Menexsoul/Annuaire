@@ -1,3 +1,95 @@
-body {
-    background-color: white;
+/* Global styles for Annuaire app */
+:root{
+  --primary: #0d6efd;
+  --muted: #6c757d;
+  --bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --border: #e9ecef;
+}
+
+body{
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: #222;
+  margin:0;
+  padding:0;
+}
+
+/* Navbar tweaks */
+.navbar-brand{ font-weight:700; }
+.navbar .nav-link{ color: rgba(0,0,0,0.75); }
+.navbar .nav-link:hover{ color: var(--primary); }
+
+.container-fluid{ max-width:1100px; }
+
+/* Page header */
+.page-header{
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+
+/* Player card */
+.player-card{
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: .5rem;
+  padding: 1rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+.player-card img{ max-width:100%; border-radius: .25rem; }
+.player-meta{ color: var(--muted); font-size: .95rem; }
+
+/* Reviews */
+.review{ margin-bottom: .75rem; }
+.review p{ margin:0; }
+
+/* Form styling */
+.form-control{ border-radius: .35rem; }
+.btn-primary{ background: var(--primary); border-color: var(--primary); }
+
+/* Form layout and inputs */
+.form-group{ margin-bottom: 0.9rem; }
+.form-label{ display:block; font-weight:600; margin-bottom: .35rem; color: #222; }
+.form-text{ color: var(--muted); font-size: .875rem; margin-top: .25rem; }
+
+/* Input focus and states */
+.form-control:focus{ box-shadow: 0 0 0 .15rem rgba(13,110,253,0.15); border-color: var(--primary); }
+input.form-control, textarea.form-control, select.form-control{ border: 1px solid var(--border); padding: .5rem .6rem; }
+
+/* Invalid state */
+.is-invalid{ border-color: #dc3545 !important; box-shadow: 0 0 0 .15rem rgba(220,53,69,0.12) !important; }
+.invalid-feedback{ color: #dc3545; font-size: .875rem; margin-top: .25rem; }
+
+/* Inline help/errors for Symfony form_errors output */
+.form-errors{ color: #dc3545; font-size: .875rem; margin-top: .25rem; }
+
+/* Form actions */
+.form-actions{ margin-top: 1rem; display:flex; gap:.5rem; }
+
+/* Compact horizontal form */
+.form-row{ display:flex; gap: .75rem; align-items:flex-end; }
+.form-row .form-group{ flex:1; }
+
+/* Display of submitted data / show views */
+.data-display{ background: var(--card-bg); border:1px solid var(--border); border-radius:.5rem; padding:1rem; }
+.data-list{ list-style:none; padding:0; margin:0; }
+.data-row{ display:flex; gap:1rem; padding: .5rem 0; border-bottom: 1px dashed rgba(0,0,0,0.03); }
+.data-row:last-child{ border-bottom: none; }
+.field-label{ width:160px; color:var(--muted); font-weight:600; }
+.field-value{ flex:1; }
+
+/* Small visual helpers for labels/values */
+.badge-value{ background: rgba(13,110,253,0.08); color: var(--primary); padding: .2rem .5rem; border-radius: .35rem; font-weight:600; }
+
+/* Card with data rows */
+.card .data-display{ padding: .75rem; }
+
+/* Flash messages */
+.flash-messages{ position: fixed; top: 72px; right: 20px; z-index: 1050; }
+.alert{ box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+
+/* Responsive tweaks */
+@media (max-width: 576px){
+  .container-fluid{ padding-left: .75rem; padding-right: .75rem; }
 }

@@ -10,7 +10,7 @@
     <div class="player-card" style="border: 1px solid #ccc; padding: 1rem; width: 200px;">
       <h3>{{ player.Prenom }} {{ player.Nom }}</h3>
   <p>{{ player.MaCategorie.Nom }} - {{ player.UnNiveau.nom }}</p>
-      <a href="{{ path('player_show', {id: player.id}) }}">Voir la fiche</a>
+  <a href="{{ path('app_player_show', {'id': player.id}) }}">Voir la fiche</a>
     </div>
   {% else %}
     <p>Aucun joueur trouvé.</p>
